@@ -16,7 +16,7 @@ class HomeViewmodel extends _$HomeViewmodel {
     _weatherRepository = ref.watch(weatherRepositoryProvider);
     try {
       final Position position = await _determinePosition();
-      final response = await currentWeather(
+      final response = await getWeatherFromLatLon(
           lat: position.latitude.toString(),
           lon: position.longitude.toString());
       return response.fold(
@@ -28,7 +28,7 @@ class HomeViewmodel extends _$HomeViewmodel {
     }
   }
 
-  Future<Either<AppFailure, CurrentWeatherModel>> currentWeather(
+  Future<Either<AppFailure, CurrentWeatherModel>> getWeatherFromLatLon(
       {required String lat, required String lon}) async {
     final response =
         await _weatherRepository.getCurrentWeather(lat: lat, lon: lon);

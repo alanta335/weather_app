@@ -6,12 +6,12 @@ part of 'search_viewmodel.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$searchViewmodelHash() => r'b3995b5191afecb43970e1b8f0657a9d2197abeb';
+String _$searchViewmodelHash() => r'd035b984fa7cc72d7c1bd61271895dab9a069f31';
 
 /// See also [SearchViewmodel].
 @ProviderFor(SearchViewmodel)
-final searchViewmodelProvider = AutoDisposeAsyncNotifierProvider<
-    SearchViewmodel, CurrentWeatherModel?>.internal(
+final searchViewmodelProvider = AutoDisposeNotifierProvider<SearchViewmodel,
+    AsyncValue<CurrentWeatherModel?>>.internal(
   SearchViewmodel.new,
   name: r'searchViewmodelProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -21,7 +21,8 @@ final searchViewmodelProvider = AutoDisposeAsyncNotifierProvider<
   allTransitiveDependencies: null,
 );
 
-typedef _$SearchViewmodel = AutoDisposeAsyncNotifier<CurrentWeatherModel?>;
+typedef _$SearchViewmodel
+    = AutoDisposeNotifier<AsyncValue<CurrentWeatherModel?>>;
 String _$suggestionsHash() => r'5df14a3abe6194a12d9d81c1a61cdb15fe6fd33e';
 
 /// See also [Suggestions].
