@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:weather_app/view/pages/home/home_page.dart';
+import 'package:weather_app/view/home/pages/home_page.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));

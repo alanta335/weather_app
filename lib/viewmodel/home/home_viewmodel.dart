@@ -24,7 +24,7 @@ class HomeViewmodel extends _$HomeViewmodel {
         (r) => r,
       );
     } on Exception catch (e) {
-      throw e;
+      rethrow;
     }
   }
 

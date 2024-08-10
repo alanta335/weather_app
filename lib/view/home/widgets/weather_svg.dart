@@ -22,6 +22,10 @@ class WeatherSVG extends StatelessWidget {
       '50d' => Assets.images50d,
       _ => Assets.imagesUnknown, // Default case for unknown icons
     };
-    return SvgPicture.asset(iconPath);
+    return SvgPicture.asset(
+      iconPath,
+      height: 50,
+      width: 50,
+    );
   }
 }
