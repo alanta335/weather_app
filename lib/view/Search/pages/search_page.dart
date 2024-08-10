@@ -14,7 +14,7 @@ class SearchPage extends ConsumerWidget {
       appBar: AppBar(),
       body: SingleChildScrollView(
         child: SizedBox(
-          height: 1500,
+          height: 1200,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
