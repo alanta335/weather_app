@@ -29,8 +29,8 @@ class WeatherRepository {
       }
       return Right(currentWeather);
     } on Exception catch (e) {
-      return Left(
-          AppFailure("Error occured during signup APi call ${e.toString()}"));
+      return Left(AppFailure(
+          "Error occured during fetching weather data APi call ${e.toString()}"));
     }
   }
 }
