@@ -18,8 +18,16 @@ class SearchPage extends ConsumerWidget {
           child: Column(
             children: [
               TextField(
+                cursorColor: Colors.black,
                 decoration: const InputDecoration(
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black26),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black87),
+                  ),
                   labelText: 'Search Locations',
+                  labelStyle: TextStyle(color: Colors.black),
                   prefixIcon: Icon(Icons.search),
                 ),
                 onChanged: (String value) async {
@@ -28,36 +36,48 @@ class SearchPage extends ConsumerWidget {
                       .updateSuggestions(location: value);
                 },
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
               if (suggestions.isNotEmpty)
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ConstrainedBox(
-                    constraints: BoxConstraints(
-                      maxHeight: suggestions.length * 55,
-                    ),
-                    child: ListView.builder(
-                      itemCount: suggestions.length,
-                      itemBuilder: (context, index) {
-                        final suggestion = suggestions[index];
-                        return ListTile(
-                          tileColor: Colors.green,
-                          title: Text(suggestion.name.toString()),
-                          onTap: () {
-                            ref
-                                .read(locationSearchTextProvider.notifier)
-                                .update(suggestion);
-                            ref
-                                .read(searchViewmodelProvider.notifier)
-                                .fetchLocationWeather(
-                                    lat: suggestion.lat.toString(),
-                                    lon: suggestion.lon.toString());
-                            ref
-                                .read(suggestionsProvider.notifier)
-                                .updateSuggestions(location: null);
-                          },
-                        );
-                      },
+                Container(
+                  decoration: BoxDecoration(border: Border.all(width: 2)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(
+                        maxHeight: suggestions.length * 55,
+                      ),
+                      child: ListView.builder(
+                        itemCount: suggestions.length,
+                        itemBuilder: (context, index) {
+                          final suggestion = suggestions[index];
+                          return ListTile(
+                            contentPadding: const EdgeInsets.all(0),
+                            dense: true,
+                            title: Container(
+                              decoration:
+                                  BoxDecoration(border: Border.all(width: 2)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Text(
+                                    "${suggestion.name},${suggestion.state},${suggestion.country}"),
+                              ),
+                            ),
+                            onTap: () {
+                              ref
+                                  .read(locationSearchTextProvider.notifier)
+                                  .update(suggestion);
+                              ref
+                                  .read(searchViewmodelProvider.notifier)
+                                  .fetchLocationWeather(
+                                      lat: suggestion.lat.toString(),
+                                      lon: suggestion.lon.toString());
+                              ref
+                                  .read(suggestionsProvider.notifier)
+                                  .updateSuggestions(location: null);
+                            },
+                          );
+                        },
+                      ),
                     ),
                   ),
                 ),
